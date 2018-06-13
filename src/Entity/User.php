@@ -58,6 +58,22 @@ class User implements UserInterface
 
     // other properties and methods
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
     public function getEmail()
     {
         return $this->email;
@@ -95,6 +111,7 @@ class User implements UserInterface
 
     public function setPassword($password)
     {
+//        var_dump($this->password);exit;
         $this->password = $password;
     }
 
@@ -108,6 +125,14 @@ class User implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles): void
+    {
+        $this->roles = $roles;
     }
 
     public function eraseCredentials()
