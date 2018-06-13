@@ -9,7 +9,14 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Logged: {{ app.user.username }}</p>
+        <a href="{{ app.request.getBaseURL() }}logout">Log out</a>
+        {%  else  %}
+            {{ controller_name }}!
+    {% endif %}
+    </h1>
 
     This friendly message is coming from:
     <ul>

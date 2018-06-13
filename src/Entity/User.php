@@ -34,6 +34,18 @@ class User implements UserInterface
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $firstname;
+
+    /**
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
@@ -58,6 +70,22 @@ class User implements UserInterface
 
     // other properties and methods
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
     public function getEmail()
     {
         return $this->email;
@@ -78,6 +106,38 @@ class User implements UserInterface
         $this->username = $username;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $firstanme
+     */
+    public function setFirstname($firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -95,6 +155,7 @@ class User implements UserInterface
 
     public function setPassword($password)
     {
+//        var_dump($this->password);exit;
         $this->password = $password;
     }
 
@@ -108,6 +169,14 @@ class User implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles): void
+    {
+        $this->roles = $roles;
     }
 
     public function eraseCredentials()
