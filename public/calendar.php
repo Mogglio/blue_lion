@@ -2,9 +2,7 @@
 require 'bootstrap.php';
 
 $pdo = get_pdo();
-//var_dump($pdo);
 $events = new App\Calendar\Events($pdo);
-//var_dump($events);
 $month = new App\Calendar\Month($_GET['month'] ?? null, $_GET['year'] ?? null);
 $start = $month->getStartingDay();
 $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
@@ -57,8 +55,7 @@ require '../views/header.php';
         </tr>
       <?php endfor; ?>
   </table>
-
-  <a href="/add.php" class="calendar__button">+</a>
+        <a href="/add.php" class="calendar__button">+</a>
 
 </div>
 

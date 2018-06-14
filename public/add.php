@@ -7,13 +7,11 @@ $data = [
     'end'   => date('H:i')
 ];
 $validator = new App\Calendar\Validator($data);
-//if (!$validator->validate('date', 'date')) {
+if (!$validator->validate('date', 'date')) {
     $data['date'] = date('Y-m-d');
-//}
+}
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump("coucou");
-    var_dump($data);
     $data = $_POST;
 //    $validator = new App\Calendar\EventValidator();
 //    $errors = $validator->validates($_POST);
@@ -21,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $events = new \App\Calendar\Events(get_pdo());
         $event = $events->hydrate(new App\Calendar\Event(), $data);
         $events->create($event);
-        header('Location: /calendar?success=1');
+        header('Location: /calendar.php?success=1');
         exit();
 //    }
 }

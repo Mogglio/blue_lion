@@ -20,20 +20,16 @@ $data = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//    var_dump("coucou");
     $data = $_POST;
-//    var_dump($_POST);
-    $validator = new App\Calendar\EventValidator();
-//    var_dump($validator);
-    $errors = $validator->validates($data);
-    var_dump($errors);
-    if (empty($errors)) {
+//    $validator = new App\Calendar\EventValidator();
+//    $errors = $validator->validates($data);
+//    if (empty($errors)) {
         var_dump("empty error");
         $events->hydrate($event, $data);
         $events->update($event);
-        header('Location: /index?success=1');
+        header('Location: /calendar.php?success=1');
         exit();
-    }
+//    }
 }
 
 render('header', ['title' => $event->getName()]);
