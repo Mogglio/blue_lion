@@ -1,10 +1,18 @@
+html {
+  overflow-y: hidden !important; /* Temporary ! */
+}
+
+.title {
+  margin-top: 1.5rem;
+}
+
 .calendar {
   position: relative;
 }
 
 .calendar__table {
   width: 100%;
-  height: calc(100vh - 128px);
+  height: calc(100vh - 52px);
 }
 
 .calendar__table td {
@@ -16,21 +24,11 @@
 }
 
 .calendar__table td.is-today {
-  background-color: #f3f3f3;
+  background-color: #f5f5f5;
 }
 
 .calendar__table--6weeks td {
   height:  16.66%;
-}
-
-.calendar__weekday {
-  font-weight: bold;
-  color: #000;
-  font-size: 1.2em;
-}
-
-.calendar__day {
-  font-size: 1.3em;
 }
 
 .calendar__othermonth .calendar__day {
@@ -45,7 +43,7 @@
   text-align: center;
   color: #FFF;
   font-size: 30px;
-  background-color: #007bff;
+  background-color: #3273DC;
   border-radius: 50%;
 
   box-shadow: 0 6px 10px 0 #0000001a,0 1px 18px 0 #0000001a,0 3px 5px -1px #0003;

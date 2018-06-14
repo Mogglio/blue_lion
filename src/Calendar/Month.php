@@ -15,7 +15,7 @@ class Month
         'Mai',
         'Juin',
         'Juillet',
-        'Aout',
+        'Août',
         'Septembre',
         'Octobre',
         'Novembre',

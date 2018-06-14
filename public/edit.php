@@ -37,16 +37,18 @@ render('header', ['title' => $event->getName()]);
 
 <div class="container">
 
-  <h1>Editer l'évènement
+  <h1 class="title">Editer l'évènement
     <small><?= h($event->getName()); ?></small>
   </h1>
 
   <form action="" method="post" class="form">
       <?php render('calendar/form', ['data' => $data, 'errors' => $errors]); ?>
     <div class="form-group">
-      <button class="btn btn-primary">Modifier l'évènement</button>
+      <button class="button is-link">Modifier l'évènement</button>
     </div>
   </form>
 </div>
+
+
 
 <?php render('footer'); ?>
