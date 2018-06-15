@@ -1,14 +1,15 @@
 <?php
-namespace App\Calendar;
+
+namespace App;
 
 class Events {
 
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
+//    private $pdo;
+//
+//    public function __construct(\PDO $pdo)
+//    {
+//        $this->pdo = $pdo;
+//    }
 
     /**
      * Récupère les évènements commençant entre 2 dates
@@ -16,7 +17,8 @@ class Events {
      * @param \DateTimeInterface $end
      * @return Event[]
      */
-    public function getEventsBetween (\DateTimeInterface $start, \DateTimeInterface $end): array {
+    public function getEventsBetween ($start, $end)
+    {
         $sql = "SELECT * FROM events WHERE start BETWEEN '{$start->format('Y-m-d 00:00:00')}' AND '{$end->format('Y-m-d 23:59:59')}' ORDER BY start ASC";
         $statement = $this->pdo->query($sql);
         $statement->setFetchMode(\PDO::FETCH_CLASS, Event::class);
@@ -96,7 +98,6 @@ class Events {
      * @return bool
      */
     public function update (Event $event): bool {
-        var_dump("UPDATE");
         $statement = $this->pdo->prepare('UPDATE events SET name = ?, description = ?, start = ?, end = ? WHERE id = ?');
         return $statement->execute([
             $event->getName(),

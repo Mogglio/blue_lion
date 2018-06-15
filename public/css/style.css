@@ -1,3 +1,20 @@
+
+/****
+HEADER
+ *****/
+
+
+header .navbar .logo {
+  max-width: 50px;
+}
+
+header .navbar h1 {
+  font-size: 18px;
+}
+
+  /****
+  CALENDAR
+  ****/
 .calendar {
   position: relative;
 }

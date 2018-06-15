@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Calendar;
+namespace App;
 
 class Month
 {
 
     public $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-    private $months = [
+    public $months = [
         'Janvier',
         'Février',
         'Mars',
