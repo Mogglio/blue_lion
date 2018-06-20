@@ -121,4 +121,14 @@ class Month
         return new Month($month, $year);
     }
 
+    public function prepareEventsBetweenDay($month) {
+        $start = $this->getStartingDay($month);
+        $start = $start->format('N') === '1' ? $start : $this->getStartingDay($month)->modify('last monday');
+        $weeks = $month->getWeeks();
+        $end = $start->modify('+' . (6 + 7 * ($weeks -1)) . ' days');
+        $dataEvent = array('start' => $start, 'end' => $end, 'weeks' => $weeks);
+
+        return $dataEvent;
+    }
+
 }

@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Month;
-use App\Events;
 use App\Entity\Event;
+use App\Repository\EventRepository;
 use App\Form\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +29,10 @@ class CalendarController extends Controller
         $nextMonth = $datasDate['months']->nextMonth();
         $previousMonth = $datasDate['months']->previousMonth();
 
+        $dayStart = $datasDate['start']->format('Y-m-d');
+        $dayEnd = $datasDate['end']->format('Y-m-d');
+        $events = $this->getEventsBetweenByDay($dayStart, $dayEnd);
+
         $weeks = array();
         $datas_days = array();
         for ($i = 0; $i < $datasDate['weeks']; $i++) {
@@ -50,15 +54,12 @@ class CalendarController extends Controller
             $weeks[$i] = $datas_days;
         }
 
-//        $datasEvent = $this->instantiateEvents($datasDate['start'], $datasDate['end']);
-
         return $this->render('calendar/calendar.html.twig', [
-            'controller_name' => 'CalendarController',
             'datasDate'       => $datasDate,
             'months'          => $months,
             'next_month'      => $nextMonth,
             'previous_month'  => $previousMonth,
-            'weeks'           => $weeks
+            'weeks'           => $weeks,
         ]);
     }
 
@@ -109,10 +110,22 @@ class CalendarController extends Controller
         return $datas;
     }
 
-    public function instantiateEvents($start, $end) {
+    public function instantiateEvents($dayStart, $dayEnd) {
+        $events = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->getEventsBetween($dayStart, $dayEnd);
 
-        $events = new Events;
-        $events = $events->getEventsBetweenByDay($start, $end);
+        return $events;
+    }
+    public function getEventsBetweenByDay ($dayStart, $dayEnd) {
+        $events = $this->instantiateEvents($dayStart, $dayEnd);
+        $days = [];
+        foreach($events as $event) {
+            $date = $event->getDate()->format('Y-m-d');;
+            /* Deprecated */
+            $days[$date] = [$event];
+        }
+        return $days;
     }
 
     /**

@@ -27,17 +27,17 @@
         {% for week in weeks %}
         <tr>
             {% for k,day in week %}
-
             <td class="{% if day['withinMonth'] == false %}calendar__othermonth{% endif %} {% if day['isToday'] %}is-today{% endif %}">
                 {% if week is same as(0) %}
                     <div class="calendar__weekday">{{ k }}</div>
                 {% endif %}
                 <a class="calendar__day" href="{{ app.request.getBaseURL() }}addcalendar?date={{ day['date'].date|date("Y-m-d") }}">{{ day['day_nbr'] }}</a>
-                {#<?php foreach($eventsForDay as $event): ?>#}
-                {#<div class="calendar__event">#}
+                {% for event in day['eventsForDay'] %}
+                <div class="calendar__event">
+                    {{ event.name }}
                     {#<?= $event->getStart()->format('H:i') ?> - <a href="/edit.php?id=<?= $event->getId(); ?>"><?= h($event->getName()); ?></a>#}
-                {#</div>#}
-                {#<?php endforeach; ?>#}
+                </div>
+                {% endfor %}
             </td>
             {% endfor %}
         </tr>
