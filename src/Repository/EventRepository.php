@@ -22,6 +22,7 @@ class EventRepository extends ServiceEntityRepository
             ->andWhere('e.date < :dayEnd')
             ->setParameter('dayStart', $dayStart)
             ->setParameter('dayEnd', $dayEnd)
+            ->orderBy('e.start', 'ASC')
             ->getQuery();
 
         return $qb->execute();

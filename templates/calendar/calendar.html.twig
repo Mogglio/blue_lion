@@ -32,10 +32,13 @@
                     <div class="calendar__weekday">{{ k }}</div>
                 {% endif %}
                 <a class="calendar__day" href="{{ app.request.getBaseURL() }}addcalendar?date={{ day['date'].date|date("Y-m-d") }}">{{ day['day_nbr'] }}</a>
-                {% for event in day['eventsForDay'] %}
+                {% for events in day['eventsForDay'] %}
                 <div class="calendar__event">
+                    {% for event in events %}
+                    {{ event.start.date|date("H:i")}}
                     {{ event.name }}
                     {#<?= $event->getStart()->format('H:i') ?> - <a href="/edit.php?id=<?= $event->getId(); ?>"><?= h($event->getName()); ?></a>#}
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </td>

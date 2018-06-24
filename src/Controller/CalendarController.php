@@ -121,9 +121,9 @@ class CalendarController extends Controller
         $events = $this->instantiateEvents($dayStart, $dayEnd);
         $days = [];
         foreach($events as $event) {
-            $date = $event->getDate()->format('Y-m-d');;
+            $date = $event->getDate()->format('Y-m-d');
             /* Deprecated */
-            $days[$date] = [$event];
+            $days[$date][] = [$event];
         }
         return $days;
     }

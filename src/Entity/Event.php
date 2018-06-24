@@ -83,7 +83,6 @@ class Event {
 
     public function setDate($date)
     {
-        var_dump($date);
         $this->date = $date;
     }
 
